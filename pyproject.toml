@@ -39,22 +39,13 @@ Repository = "https://github.com/irunasroot/plugin-credenital-awx-github.git"
 Changelog = "https://github.com/irunasroot/plugin-credenital-awx-github/blob/main/CHANGELOG.md"
 
 [project.entry-points."awx_plugins.credentials"]
-github_app_plugin = "awx_plugin_credential_github.github:github_app_plugin"
+github_app_plugin = "awx_plugin_credential_github.plugin:github_app_plugin"
+
+[project.entry-points."awx.credential_plugins"]
+github_app_plugin = "awx_plugin_credential_github.plugin:github_app_plugin"
 
 [tool.hatch.version]
 path = "src/awx_plugin_credential_github/__init__.py"
 
-[tool.hatch.build.targets.sdist]
-exclude = [
-  "CHANGELOG.md",
-  "README.md",
-  "LICENSE",
-   ".github",
-   ".vscode",
-   ".idea"
-]
-
-[tool.hatch.build.targets.wheel]
-packages = [
-  "src/awx-plugin-credential-github"
-]
+[tool.pytest.ini_options]
+pythonpath = ["src"]
