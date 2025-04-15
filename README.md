@@ -98,3 +98,16 @@ docker@minikube:~$ docker restart cbfcb587d00f64498f069ce4fe3358af14d545dc07e73f
 ```
 
 You should now be able to use the plugin in AWX.
+
+### RPM Installations
+
+For those who are using the RPM install versus the containerized, You need to activate your default Python virtual environment, and install the plugin module there, then use awx-manage to add the new type and finally restart the Controller services.
+```shell
+cd /var/lib/awx/venv/awx
+source /var/lib/awx/venv/awx/bin/activate
+pip install awx-plugin-credential-github
+awx-manage setup_managed_credential_types -v 3
+automation-controller-service restart
+```
+
+Now you will have the new Credential Type available in the webgui and can create Credentials using the new type.
